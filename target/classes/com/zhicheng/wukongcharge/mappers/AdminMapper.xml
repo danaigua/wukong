@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhicheng.wukongcharge.admin.dao.IAdminDao">
+
+	<resultMap type="Admin" id="AdminResult">
+		<result property="id" column="id"/>
+		<result property="adminName" column="adminName"/>
+		<result property="adminPassword" column="adminPassword"/>
+		<result property="jurisdiction" column="jurisdiction"/>
+		<result property="agencyNum" column="agencyNum"/>
+		<result property="telephone" column="telephone"/>
+		<result property="capital" column="capital"/>
+		<result property="cashPledge" column="cashPledge"/>
+		<result property="name" column="name"/>
+		<result property="address" column="address"/>
+		<result property="sex" column="sex"/>
+		<result property="age" column="age"/>
+	</resultMap>
+	
+	<select id="getByAdminName" parameterType="String" resultMap="AdminResult">
+		select * from t_admin where adminName=#{adminName}
+	</select>
+	<select id="list" parameterType="Map"  resultMap="AdminResult">
+		select * from t_admin
+		<if test="start != null and size != null">
+			limit #{start}, #{size}
+		</if>
+	</select>
+	<select id="getTotal" parameterType="Map" resultType="Long">
+		select count(*) from t_admin
+	</select>
+	<update id="updateAdminInfo" parameterType="Admin">
+		update t_admin
+		<set>
+			<if test="adminName != null and adminName != ''">
+				adminName = #{adminName}, 
+			</if>
+			<if test="adminPassword != null and adminPassword != ''">
+				adminPassword = #{adminPassword}, 
+			</if>
+			<if test="jurisdiction != null and jurisdiction != ''">
+				jurisdiction = #{jurisdiction}, 
+			</if>
+			<if test="agencyNum != null and agencyNum != ''">
+				agencyNum = #{agencyNum}, 
+			</if>
+			<if test="telephone != null and telephone != ''">
+				telephone = #{telephone}, 
+			</if>
+			<if test="capital != null">
+				capital = #{capital}, 
+			</if>
+			<if test="cashPledge != null">
+				cashPledge = #{cashPledge}, 
+			</if>
+			<if test="name != null and name != ''">
+				name = #{name}, 
+			</if>
+			<if test="address != null and address != ''">
+				address = #{address}, 
+			</if>
+			<if test="sex != null and sex != ''">
+				sex = #{sex}, 
+			</if>
+			<if test="age != null">
+				age = #{age}, 
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	<delete id="deleteAdmin" parameterType="String">
+		delete from t_admin where id = #{id}
+	</delete>
+	<insert id="addAdmin" parameterType="Admin">
+		insert into t_admin values (null, #{adminName}, #{adminPassword}, #{jurisdiction}, 
+		#{agencyNum}, #{telephone}, #{capital}, #{cashPledge}, #{name}, #{address}, #{sex}, #{age});
+	</insert>
+</mapper> 

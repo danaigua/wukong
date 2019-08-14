@@ -1,0 +1,45 @@
+html,body{
+	width: 100%;
+	height: 100%;
+}
+
+.navi{
+	height: 60px;
+	background: #393D49;
+}
+.font{
+	font-size: 21px;
+	color: #f5d255;
+	line-height: 60px;
+	margin-left: 8px;
+}
+.verticalNav{
+	height: 100%;
+	width: 200px;
+	background: #393D49;
+}
+.tab{
+	margin-left:20px;
+	width:93%;
+}
+.content{
+	display:flex;
+	
+}
+.tabContent{
+	overflow:auto;
+}
+
+.tab > .layui-tab-card{
+	height:95%;
+	overflow:hidden;
+}
+.tab > .layui-tab > .tabContent  .layui-tab-item{
+	height:100%;
+}
+.layui-table-header{
+	overflow:visible
+}
+.layui-table-box{
+	overflow:scroll;
+}

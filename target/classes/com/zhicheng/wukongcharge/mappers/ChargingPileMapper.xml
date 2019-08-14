@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhicheng.wukongcharge.admin.dao.IChargingPileDao">
+
+	<resultMap type="ChargingPile" id="ChargingPileResult">
+		<result property="id" column="id"/>
+		<result property="uniqueId" column="uniqueId"/>
+		<result property="address" column="address"/>
+		<result property="state" column="state"/>
+		<result property="outlet1" column="outlet1"/>
+		<result property="outlet2" column="outlet2"/>
+		<result property="outlet3" column="outlet3"/>
+		<result property="outlet4" column="outlet4"/>
+		<result property="outlet5" column="outlet5"/>
+		<result property="outlet6" column="outlet6"/>
+		<result property="outlet7" column="outlet7"/>
+		<result property="outlet8" column="outlet8"/>
+		<result property="outlet9" column="outlet9"/>
+		<result property="outlet10" column="outlet10"/>
+	</resultMap>
+	
+	<select id="getByUniqueId" parameterType="String" resultMap="ChargingPileResult">
+		select * from t_chargingpile where uniqueId=#{uniqueId}
+	</select>
+	<select id="list" parameterType="Map"  resultMap="ChargingPileResult">
+		select * from t_chargingpile
+		<if test="start != null and size != null">
+			limit #{start}, #{size}
+		</if>
+	</select>
+	<select id="getTotal" parameterType="Map" resultType="Long">
+		select count(*) from t_chargingpile
+	</select>
+	<update id="updateChargingPileInfo" parameterType="ChargingPile">
+		update t_chargingpile
+		<set>
+			<if test="uniqueId != null and uniqueId != ''">
+				uniqueId = #{uniqueId}, 
+			</if>
+			<if test="address != null and address != ''">
+				address = #{address}, 
+			</if>
+			<if test="state != null and state != ''">
+				state = #{state}, 
+			</if>
+			<if test="outlet1 != null and outlet1 != ''">
+				outlet1 = #{outlet1}, 
+			</if>
+			<if test="outlet2 != null and outlet2 != ''">
+				outlet2 = #{outlet2}, 
+			</if>
+			<if test="outlet3 != null and outlet3 != ''">
+				outlet3 = #{outlet3}, 
+			</if>
+			<if test="outlet4 != null and outlet4 != ''">
+				outlet4 = #{outlet4}, 
+			</if>
+			<if test="outlet5 != null and outlet5 != ''">
+				outlet5 = #{outlet5}, 
+			</if>
+			<if test="outlet6 != null and outlet6 != ''">
+				outlet6 = #{outlet6}, 
+			</if>
+			<if test="outlet7 != null and outlet7 != ''">
+				outlet7 = #{outlet7}, 
+			</if>
+			<if test="outlet8 != null and outlet8 != ''">
+				outlet8 = #{outlet8}, 
+			</if>
+			<if test="outlet9 != null and outlet9 != ''">
+				outlet9 = #{outlet9}, 
+			</if>
+			<if test="outlet10 != null and outlet10 != ''">
+				outlet10 = #{outlet10}, 
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	<delete id="deleteChargingPile" parameterType="String">
+		delete from t_chargingpile where id = #{id}
+	</delete>
+	<insert id="addChargingPile" parameterType="ChargingPile">
+		insert into t_chargingpile values (#{nickName}, #{gender}, #{country}, 
+		#{province}, #{city}, #{language}, #{telephone},null, #{uniqueId});
+	</insert>
+</mapper> 
